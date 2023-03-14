@@ -1,5 +1,5 @@
 <template>
-  <div class="grid bg-blue-800 p-4 text-white text-justify grid-cols-5">
+  <!-- <div class="grid bg-blue-800 p-4 text-white text-justify grid-cols-5">
     <img src="../assets/vector.png" alt="" class=" w-72 m-auto col-span-2">
 
     <p class=" col-span-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
@@ -11,15 +11,12 @@
       ipsum dolor sit amet, consectetur adipisicing elit. Porro possimus sed debitis quis, non quas nemo eum? Tempore
       minima accusamus quas id nemo provident aut quod quia, nesciunt eligendi atque.
     </p>
-  </div>
+  </div> -->
 
   <div class=" mx-4 mt-3">
     <search-bar-component/>
   </div>
 
-  <div class="div flex flex-row-reverse ml-4">
-    <add-forum-btn-component />
-  </div>
   <div>
     <!-- content -->
     <div class="div px-5 py-4">
@@ -45,7 +42,6 @@ import { mapGetters } from "vuex";
 import PostListComponent from "@/components/PostListComponent.vue";
 import CategoryListComponent from "@/components/CategoryListComponent.vue";
 import PaginationComponent from '@/components/PaginationComponent.vue';
-import AddForumBtnComponent from '@/components/AddForumBtnComponent.vue';
 import SearchBarComponent from '@/components/SearchBarComponent.vue';
 
 export default {
@@ -73,7 +69,6 @@ export default {
     PostListComponent,
     CategoryListComponent,
     PaginationComponent,
-    AddForumBtnComponent,
     SearchBarComponent,
   }
 };
