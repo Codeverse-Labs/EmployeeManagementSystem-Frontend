@@ -7,14 +7,13 @@
           <!-- Website Logo -->
           <div>
             <a href="#" class="flex items-center py-4 px-2">
-              <img src="../assets/logo.png" alt="Logo" class="h-8 w-8 mr-2">
-              <span class="font-semibold text-gray-500 text-lg">Forum</span>
+              <img src="../assets/hasthiya-flt-img.png" alt="Logo" class="h-7 w-36 mr-2">
             </a>
           </div>
 
           <!-- Primary Navbar items -->
           <div class="hidden md:flex items-center space-x-1" v-if="userState.user && userState.user.isAdmin">
-            <router-link  v-for="item in adminNavigation" :key="item.name" :to="item.href" :class="[
+            <router-link v-for="item in adminNavigation" :key="item.name" :to="item.href" :class="[
               item.isactive
                 ? 'bg-gray-900 text-white'
                 : 'text-black font-bold hover:bg-gray-700 hover:text-white',
@@ -22,7 +21,7 @@
             ]">{{ item.name }}</router-link>
           </div>
           <div class="hidden md:flex items-center space-x-1" v-else>
-            <router-link  v-for="item in navigation" :key="item.name" :to="item.href" :class="[
+            <router-link v-for="item in navigation" :key="item.name" :to="item.href" :class="[
               item.isactive
                 ? 'bg-gray-900 text-white'
                 : 'text-black font-bold hover:bg-gray-700 hover:text-white',
@@ -32,23 +31,50 @@
         </div>
 
         <div class=" flex items-center">
-          <!-- user menu -->
+          <!-- notifiaction -->
           <Popper>
-            <MenuButton
-            class="flex mr-3 rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-            <span class="sr-only">Open user menu</span>
-            <img v-if="userState.user" class="h-8 w-8 rounded-full" :src="userState.user.imageurl" alt="" />
-          </MenuButton>
+            <MenuButton class="flex mr-3 ">
+              <span class="sr-only">Open user menu</span>
+              <button class="inline-block relative">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+                <span class="animate-ping absolute top-1 right-0.5 block h-1 w-1 rounded-full ring-2 ring-red-400 bg-red-600"></span>
+              </button>
+            </MenuButton>
             <template #content>
               <div class=" bg-white shadow-lg rounded-md mt-3 flex-col py-3 px-7">
-                <div> <router-link class=" py-4 w-full text-left text-sm text-gray-700" to="/profile">Your Profile</router-link></div>
-                <div> <router-link class="py-4 w-full text-left text-sm text-gray-700" to="/profile">Settings</router-link></div>
-                <div> <router-link class=" py-4 w-full text-left text-sm text-gray-700" to="/profile">Help</router-link></div>
-                <div> <router-link  @click="logout()" class=" py-4 w-full text-left text-sm text-gray-700" to="/signin">Sign out</router-link></div>
+                
               </div>
             </template>
           </Popper>
-          
+
+
+          <!-- user menu -->
+          <Popper>
+            <MenuButton
+              class="flex mr-3 rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+              <span class="sr-only">Open user menu</span>
+              <img v-if="userState.user" class="h-8 w-8 rounded-full" :src="userState.user.imageurl" alt="" />
+            </MenuButton>
+            <template #content>
+              <div class=" bg-white shadow-lg rounded-md mt-3 flex-col py-3 px-7">
+                <div> <router-link class=" py-4 w-full text-left text-sm text-gray-700" to="/profile">Your
+                    Profile</router-link></div>
+                <div> <router-link class=" py-4 w-full text-left text-sm text-gray-700" to="/profile">Your
+                    Assets</router-link></div>
+                <div> <router-link class="py-4 w-full text-left text-sm text-gray-700"
+                    to="/profile">Settings</router-link></div>
+                <div> <router-link class=" py-4 w-full text-left text-sm text-gray-700" to="/profile">Help</router-link>
+                </div>
+                <div> <router-link @click="logout()" class=" py-4 w-full text-left text-sm text-gray-700"
+                    to="/signin">Sign out</router-link></div>
+              </div>
+            </template>
+          </Popper>
+
 
           <!-- Mobile menu button -->
           <button class="outline-none mobile-menu-button md:hidden" @click="menuTrigger">
@@ -75,18 +101,18 @@
 <script>
 import { mapGetters } from 'vuex';
 import { defineComponent } from "vue";
-  import Popper from "vue3-popper";
+import Popper from "vue3-popper";
 
 export default defineComponent({
   data() {
     return {
       navigation: [
         { name: "Home", href: "/" },
-        { name: "About", href: "/about" },        
+        { name: "About", href: "/about" },
       ],
       adminNavigation: [
         { name: "Home", href: "/" },
-        { name: "About", href: "/about" },        
+        { name: "About", href: "/about" },
         { name: "Admin panel", href: "/category" },
       ],
       menu: false,
@@ -105,8 +131,8 @@ export default defineComponent({
     userState: "getUserState",
   }),
   components: {
-      Popper,
-    },
+    Popper,
+  },
 });
 
 </script>
