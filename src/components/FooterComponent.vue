@@ -1,12 +1,12 @@
 <template>
     <footer aria-label="Site Footer" class="bg-white">
         <div class="max-w-screen-xl px-4 pt-1 pb-8 mx-auto sm:px-6 lg:px-8">
-            <div class="text-center">
+            <!-- <div class="text-center">
                 <p class="max-w-sm mx-auto text-gray-500">
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum maiores
                     ipsum eos temporibus ea nihil.
                 </p>
-            </div>
+            </div> -->
 
             <div class="pt-8 mt-6 border-t border-gray-100 sm:flex sm:items-center sm:justify-between">
                 <nav aria-label="Footer Navigation - Support">
@@ -30,7 +30,7 @@
                         </li>
                     </ul>
                 </nav>
-                <div class="flex justify-center gap-6 mt-8 sm:mt-0 text-xs">© {{date}}.Vue Forum. All rights reserved.</div>
+                <div class="flex justify-center gap-6 mt-8 sm:mt-0 text-xs">© {{date}}.Hasthiya-EMS. All rights reserved.</div>
                 <ul class="flex justify-center gap-6 mt-8 sm:mt-0 lg:justify-end">
                     <li>
                         <a href="/" rel="noreferrer" target="_blank" class="text-gray-700 transition hover:opacity-75">
