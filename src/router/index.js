@@ -98,7 +98,7 @@ router.beforeEach((to,from,next)=>{
     next('/signin')
   }else if(!to.meta.auth && store.getters.getUserState.token){
     next('/')
-  }else if(to.meta.admin && !store.getters.getUserState.user.isAdmin){
+  }else if(to.meta.admin && store.getters.getUserState.user.role !='admin'){
     next('/')
   }else{
     next();
