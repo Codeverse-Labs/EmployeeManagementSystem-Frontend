@@ -3,7 +3,7 @@
         <!-- Help text -->
         <span class="text-sm text-gray-700 dark:text-gray-400">
             <span class="font-semibold text-gray-900 ">{{ page }}</span> of <span
-                class="font-semibold text-gray-900 ">{{ postState.totalPages }}</span> Pages
+                class="font-semibold text-gray-900 ">{{ totalPages }}</span> Pages
         </span>
         <div class="inline-flex mt-2 xs:mt-0">
             <!-- Buttons -->
@@ -71,7 +71,8 @@ export default {
         }
     },
     props:{
-        getPage:Function
+        getPage:Function,
+        totalPages:Number,
     }
 }
 </script>
