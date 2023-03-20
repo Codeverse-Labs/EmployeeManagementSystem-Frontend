@@ -10,24 +10,6 @@ const routes = [
     meta:{auth:true}
   },
   {
-    path: '/category/:categoryId',
-    name: 'categorypage',
-    component: () => import('../views/PostsByCategoryView.vue'),
-    meta:{auth:true}
-  },
-  {
-    path: '/search/:searchTerm',
-    name: 'searchpage',
-    component: () => import('../views/SearchResults.vue'),
-    meta:{auth:true}
-  },
-  {
-    path: '/post/:postId',
-    name: 'postPage',
-    component: () => import('../views/PostView.vue'),
-    meta:{auth:true}
-  },
-  {
     path: '/editProfile',
     name: 'editProfile',
     component: () => import('../views/ProfileEditView.vue'),
@@ -40,27 +22,9 @@ const routes = [
     meta:{auth:true,admin:true}
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/AboutView.vue'),
-    meta:{auth:true}
-  },
-  {
     path: '/profile',
     name: 'profile',
     component: () => import('../views/ProfileView.vue'),
-    meta:{auth:true}
-  },
-  {
-    path: '/addforum',
-    name: 'addforum',
-    component: () => import('../views/AddPostView.vue'),
-    meta:{auth:true}
-  },
-  {
-    path: '/editforum/:forumId',
-    name: 'editforum',
-    component: () => import('../views/AddPostView.vue'),
     meta:{auth:true}
   },
   {
@@ -80,11 +44,6 @@ const routes = [
     name: 'signin',
     component: () => import('../views/SigninView.vue'),
     meta:{auth:false}
-  },
-  {
-    path: '/loading',
-    name: 'loading',
-    component: () => import('../components/LoaderComponent.vue'),
   },
 ]
 

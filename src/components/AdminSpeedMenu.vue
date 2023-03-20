@@ -6,8 +6,8 @@
             <router-link to="/dashboard">
                 <button type="button"
                     class="w-16 h-16 text-gray-500 bg-white rounded-lg border border-gray-200 hover:text-gray-900 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
-                    <i class="fa fa-home"></i>
-                    <span class="block mb-px text-xs font-medium">Dashboard</span>
+                    <i class="fa fa-solid fa-money-check-dollar"></i>
+                    <span class="block mb-px text-xs font-medium">salaries</span>
                 </button>
             </router-link>
 
@@ -15,7 +15,31 @@
                 <button type="button"
                     class="w-16 h-16 text-gray-500 bg-white rounded-lg border border-gray-200 hover:text-gray-900 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
                     <i class="fa fa-th-large"></i>
-                    <span class="block mb-px text-xs font-medium">categories</span>
+                    <span class="block mb-px text-xs font-medium">techs</span>
+                </button>
+            </router-link>
+
+            <router-link to="/category">
+                <button type="button"
+                    class="w-16 h-16 text-gray-500 bg-white rounded-lg border border-gray-200 hover:text-gray-900 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+                    <i class="fa fa-th-large"></i>
+                    <span class="block mb-px text-xs font-medium">job titles</span>
+                </button>
+            </router-link>
+
+            <router-link to="/category">
+                <button type="button"
+                    class="w-16 h-16 text-gray-500 bg-white rounded-lg border border-gray-200 hover:text-gray-900 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+                    <i class="fa fa-th-large"></i>
+                    <span class="block mb-px text-xs font-medium">Types</span>
+                </button>
+            </router-link>
+
+            <router-link to="/category">
+                <button type="button"
+                    class="w-16 h-16 text-gray-500 bg-white rounded-lg border border-gray-200 hover:text-gray-900 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+                    <i class=" fa fa-th-large"></i>
+                    <span class="block mb-px text-xs font-medium">assets</span>
                 </button>
             </router-link>
 
