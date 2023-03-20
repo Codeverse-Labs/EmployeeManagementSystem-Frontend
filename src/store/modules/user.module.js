@@ -11,7 +11,8 @@ const state = () => ({
         isLoading: false,
         user: null,
         otherUser: null,
-        token: "",
+        token: "",        
+        totalPages: 0,
     },
 })
 
@@ -29,6 +30,7 @@ const mutations = {
     },
     SET_USERS: function (state, payload) {
         state.userList.users = payload.users;
+        state.userList.totalPages = payload.totalPages;
     },
     SET_LOGGED_USER: function (state, payload) {
         state.userList.user = payload.user;
@@ -43,6 +45,71 @@ const mutations = {
 
 // actions
 const actions = {
+    getAllUsers: async function ({ commit }, payload) {
+        try {
+            commit("SET_LOADING", true);
+            let response = await UserService.getAllUsers(payload);
+            console.log(response.data)
+            if (response.data.status == 200) {
+                console.log(response.data.data.docs)
+            } else {
+                NotificationHelper.errorhandler(response.data.msg)
+            }
+            commit("SET_USERS", { users: response.data.data.docs, totalPages: response.data.data.totalPages });
+            commit("SET_LOADING", false);
+        } catch (error) {
+            NotificationHelper.errorhandler(error)
+            commit("SET_LOADING", false);
+        }
+    },
+    getAllUsersByTechnology: async function ({ commit }, payload) {
+        try {
+            commit("SET_LOADING", true);
+            let response = await UserService.getAllUsersByTechnology(payload.id, payload.page);
+            if (response.data.status == 200) {
+                console.log(response.data.data.docs)
+            } else {
+                NotificationHelper.errorhandler(response.data.msg)
+            }
+            commit("SET_USERS", { users: response.data.data.docs, totalPages: response.data.data.totalPages });
+            commit("SET_LOADING", false);
+        } catch (error) {
+            NotificationHelper.errorhandler(error)
+            commit("SET_LOADING", false);
+        }
+    },
+    getAllUsersByDesignation: async function ({ commit }, payload) {
+        try {
+            commit("SET_LOADING", true);
+            let response = await UserService.getAllUsersByDesignation(payload.id, payload.page);
+            if (response.data.status == 200) {
+                console.log(response.data.data.docs)
+            } else {
+                NotificationHelper.errorhandler(response.data.msg)
+            }
+            commit("SET_USERS", { users: response.data.data.docs, totalPages: response.data.data.totalPages });
+            commit("SET_LOADING", false);
+        } catch (error) {
+            NotificationHelper.errorhandler(error)
+            commit("SET_LOADING", false);
+        }
+    },
+    getAllUsersByName: async function ({ commit }, payload) {
+        try {
+            commit("SET_LOADING", true);
+            let response = await UserService.getAllUsersByName(payload.id, payload.page);
+            if (response.data.status == 200) {
+                console.log(response.data.data.docs)
+            } else {
+                NotificationHelper.errorhandler(response.data.msg)
+            }
+            commit("SET_USERS", { users: response.data.data.docs, totalPages: response.data.data.totalPages });
+            commit("SET_LOADING", false);
+        } catch (error) {
+            NotificationHelper.errorhandler(error)
+            commit("SET_LOADING", false);
+        }
+    },
     getUsers: async function ({ commit }) {
         try {
             commit("SET_LOADING", true);
