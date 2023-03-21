@@ -36,7 +36,7 @@
                     <td class=" screen-md:hidden">{{ formatDate(designation.updatedAt) }}</td>
                     <td @click="openPopup(designation._id, designation.name)"><i class="fa fa-pen hover:text-green-500"></i>
                     </td>
-                    <td @click="deleteCategory(designation._id)"><i class="fa fa-trash-can hover:text-red-500"></i></td>
+                    <td @click="deleteDesignation(designation._id)"><i class="fa fa-trash-can hover:text-red-500"></i></td>
                 </tr>
             </tbody>
         </table>
