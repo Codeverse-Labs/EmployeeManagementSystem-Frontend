@@ -36,7 +36,7 @@ const mutations = {
         state.userList.user = payload.user;
     },
     SET_OTHER_USER: function (state, payload) {
-        state.userList.user = payload.otherUser;
+        state.userList.otherUser = payload.otherUser;
     },
     SET_TOKEN: function (state, payload) {
         state.userList.token = payload.token;
@@ -144,12 +144,11 @@ const actions = {
             NotificationHelper.errorhandler(error)
         }
     },
-    updateUserRole: async function ({ commit }, user) {
+    getUserById: async function ({ commit }, id) {
         try {
             commit("SET_LOADING", true);
-            await UserService.updateUser(user, user._id);
-            store.dispatch('getUsers')
-            NotificationHelper.notificationhandler("UserRole change successfully!")
+            let response = await UserService.getUser(id);
+            commit("SET_OTHER_USER", { otherUser: response.data.data })
             commit("SET_LOADING", false);
         } catch (error) {
             NotificationHelper.errorhandler(error)

@@ -10,7 +10,7 @@ export class UserService{
         }});
     }
     static getAllUsersForAdmin(){
-        let dataURL = `${this.serverURL}/users/admin`;
+        let dataURL = `${this.serverURL}/users/admin/admin`;
         return axios.get(dataURL,{headers: {
             'Content-Type': 'application/json'
         }});
