@@ -9,6 +9,12 @@ export class UserService{
             'Content-Type': 'application/json'
         }});
     }
+    static getAllUsersForAdmin(){
+        let dataURL = `${this.serverURL}/users/admin`;
+        return axios.get(dataURL,{headers: {
+            'Content-Type': 'application/json'
+        }});
+    }
     static getAllUsersByTechnology(id,page){
         let dataURL = `${this.serverURL}/users/technology/${id}?page=${page}`;
         return axios.get(dataURL,{headers: {

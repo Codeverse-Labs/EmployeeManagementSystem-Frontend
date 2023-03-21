@@ -110,10 +110,10 @@ const actions = {
             commit("SET_LOADING", false);
         }
     },
-    getUsers: async function ({ commit }) {
+    getAllUsersForAdmin: async function ({ commit }) {
         try {
             commit("SET_LOADING", true);
-            let response = await UserService.getAllUsers();
+            let response = await UserService.getAllUsersForAdmin();
             console.log(response)
             commit("SET_USERS", { users: response.data.data });
             commit("SET_LOADING", false);
