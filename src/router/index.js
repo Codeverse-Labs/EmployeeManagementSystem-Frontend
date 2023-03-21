@@ -34,6 +34,18 @@ const routes = [
     meta:{auth:true,admin:true}
   },
   {
+    path: '/technology',
+    name: 'technology',
+    component: () => import('../views/TechnologyView.vue'),
+    meta:{auth:true,admin:true}
+  },
+  {
+    path: '/assetstype',
+    name: 'assetstype',
+    component: () => import('../views/AssetsTypeView.vue'),
+    meta:{auth:true,admin:true}
+  },
+  {
     path: '/signup',
     name: 'signup',
     component: () => import('../views/SignupView.vue'),
