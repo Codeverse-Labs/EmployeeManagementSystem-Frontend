@@ -28,9 +28,9 @@ const routes = [
     meta:{auth:true}
   },
   {
-    path: '/category',
-    name: 'category',
-    component: () => import('../views/CategoryView.vue'),
+    path: '/designation',
+    name: 'designation',
+    component: () => import('../views/DesignationView.vue'),
     meta:{auth:true,admin:true}
   },
   {
