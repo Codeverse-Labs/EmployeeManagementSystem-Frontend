@@ -29,10 +29,12 @@
                             placeholder="Your image url" />
                     </div>
                     <div>
-                        <textarea id="bio" name="bio" type="bio" v-model="user.bio"
-                            autocomplete="bio" required=""
-                            class="relative block w-full h-28 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm mb-2"
-                            placeholder="Add your bio here" />
+                        <select name="" id="" v-model="user.technologies"
+                            class="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm mb-2">
+                            <option value="">Select Technology</option>
+                            <option :value="technology._id" v-bind:key="technology._id" v-for="technology in technologyState.technologies">{{ technology.name }}
+                            </option>
+                    </select>
                     </div>
                 </div>
                 <div>
@@ -53,6 +55,7 @@ import { mapGetters } from 'vuex'
 export default {
     computed: mapGetters({
         userState: "getUserState",
+        technologyState: "getTechnologyState",
     }),
     created(){
         this.setdata();
@@ -61,20 +64,20 @@ export default {
         return {
             user: {
                 name: '',
-                bio: '',
                 imageurl: '',
+                technologies:[],
             },
         }
     },
     methods: {
         submit: async function () {
-            this.$store.dispatch("updateUser", { _id:this.userState.user._id, name:this.user.name, bio:this.user.bio,imageurl:this.user.imageurl});
+            this.$store.dispatch("updateUser", { _id:this.userState.user._id, name:this.user.name,imageurl:this.user.imageurl});
             router.go(-1)
         },
         setdata(){
             this.user.name=this.userState.user.name
-            this.user.bio=this.userState.user.bio
             this.user.imageurl=this.userState.user.imageurl
+            this.user.technologies=this.userState.user.technologies
         }
     },
 }
