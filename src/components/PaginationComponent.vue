@@ -20,7 +20,7 @@
 
             <button
                 class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 border-0 border-l dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 ">
-                {{ postState.page }}
+                {{ page }}
             </button>
 
             <button @click="incrementPage"
@@ -38,16 +38,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 export default {
     data(){
         return{
             page:1,
         }
     },
-    computed: mapGetters({
-        postState: "getPostState",
-    }),
     created(){
         this.$watch(
             () => this.$route.query,
@@ -58,7 +54,7 @@ export default {
     },
     methods: {
         incrementPage() {
-            if (this.page < this.postState.totalPages) {
+            if (this.page < this.totalPages) {
                 this.page++
                 this.getPage(this.page)
             }
