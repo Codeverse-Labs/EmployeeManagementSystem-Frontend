@@ -184,7 +184,8 @@ const actions = {
             this.errorhandler(error)
         }
     },
-    logout: async function ({ commit }) {
+    logout: async function ({ commit }) {        
+        NotificationHelper.notificationhandler("Successfully logged out!")
         commit("SET_LOGGED_USER", { contact: null });
         commit("SET_TOKEN", { token: null });
     },
