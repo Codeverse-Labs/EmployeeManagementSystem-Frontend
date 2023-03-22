@@ -46,6 +46,18 @@ const routes = [
     meta:{auth:true,admin:true}
   },
   {
+    path: '/assets',
+    name: 'assets',
+    component: () => import('../views/AssetsAdminView'),
+    meta:{auth:true,admin:true}
+  },
+  {
+    path: '/userAssets',
+    name: 'userAssets',
+    component: () => import('../views/UserAssetsView.vue'),
+    meta:{auth:true}
+  },
+  {
     path: '/signup',
     name: 'signup',
     component: () => import('../views/SignupView.vue'),

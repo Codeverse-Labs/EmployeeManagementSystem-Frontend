@@ -19,5 +19,3 @@ export default {
     props: ['users'],
 }
 </script>
-
-<style></style>
