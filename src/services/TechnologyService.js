@@ -16,31 +16,31 @@ export class TechnologyService{
     static serverURL = 'http://localhost:5000';
 
    
-    static getAllTechnologies(){
+    static getAll(){
         let dataURL = `${this.serverURL}/technology`;
         return axios.get(dataURL,{headers: {
             'Content-Type': 'application/json'
         }});
     }
-    static getTechnologyById(id){
+    static getById(id){
         let dataURL = `${this.serverURL}/technology/${id}`;
         return axios.get(dataURL,{headers: {
             'Content-Type': 'application/json'
         }});
     }
-    static createTechnology(data){
+    static create(data){
         let dataURL = `${this.serverURL}/technology/`;
         return axios.post(dataURL,data,{headers: {
             'Content-Type': 'application/json'
         }});
     }
-    static updateTechnology(data,id){
+    static update(data,id){
         let dataURL = `${this.serverURL}/technology/${id}`;
         return axios.put(dataURL,data,{headers: {
             'Content-Type': 'application/json'
         }});
     }
-    static deleteTechnology(id){
+    static delete(id){
         let dataURL = `${this.serverURL}/technology/${id}`;
         return axios.delete(dataURL,{headers: {
             'Content-Type': 'application/json'

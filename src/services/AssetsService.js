@@ -16,8 +16,8 @@ export class AssetsService{
     static serverURL = 'http://localhost:5000';
 
    
-    static getAll(){
-        let dataURL = `${this.serverURL}/assets`;
+    static getAll(page){
+        let dataURL = `${this.serverURL}/assets?page=${page}`;
         return axios.get(dataURL,{headers: {
             'Content-Type': 'application/json'
         }});
