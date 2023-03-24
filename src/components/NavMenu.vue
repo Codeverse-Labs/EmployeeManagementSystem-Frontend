@@ -108,15 +108,15 @@ export default defineComponent({
       navigation: [
         { name: "Home", href: "/" },
         { name: "Assets", href: "/userAssets" },
-        { name: "Leaves", href: "/leaves" },
-        { name: "Salary", href: "/usersalary" },
+        { name: "Leaves", href: "/userLeaves" },
+        { name: "Salary", href: "/userSalary" },
       ],
       adminNavigation: [
         { name: "Home", href: "/" },
         { name: "Assets", href: "/userAssets" },
-        { name: "Leaves", href: "/leaves" },
-        { name: "Salary", href: "/usersalary" },
-        { name: "Admin panel", href: "/designation" },
+        { name: "Leaves", href: "/userLeaves" },
+        { name: "Salary", href: "/userSalary" },
+        { name: "Admin panel", href: "/user" },
       ],
       menu: false,
     }
