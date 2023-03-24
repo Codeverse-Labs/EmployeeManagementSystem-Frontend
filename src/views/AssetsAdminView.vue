@@ -7,12 +7,12 @@
         <!-- content -->
         <div class=" px-5 py-4">
             <div class="grid grid-cols-4 gap-1 screen-md:block">
-                <!-- user filters -->
+                <!-- assets filters -->
                 <div class=" bg-slate-50 rounded-lg  shadow-lg screen-md:mb-4">
                     <assets-type-list-component />
                 </div>
 
-                <!-- users -->
+                <!-- assets -->
                 <div class="col-span-3 bg-slate-50 rounded-lg pb-5 shadow-lg">
                     <assets-list-component :assets="assetState.assets" />
 
@@ -40,16 +40,16 @@ export default {
         this.$watch(
             () => this.$route.query,
             () => {
-                this.$store.dispatch("getAllUsers", this.$route.query.page);
+                this.$store.dispatch("getAllAssets", this.$route.query.page);
                 console.log("query", this.$route.query.page)
             },
         ),
-            this.$store.dispatch("getAllUsers", this.$route.query.page);
+            this.$store.dispatch("getAllAssets", this.$route.query.page);
     },
     methods: {
         getPage(page) {
             this.page = page
-            this.$router.push({ name: "home", query: { page: page } })
+            this.$router.push({ name: "assets", query: { page: page } })
         }
     },
     components: {
