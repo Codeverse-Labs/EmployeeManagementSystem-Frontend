@@ -122,6 +122,9 @@ export default {
         closePopup() {
             this.popup = false;
         }
+    },
+    created(){
+        this.$store.dispatch("getAllTechnology");
     }
 }
 </script>
