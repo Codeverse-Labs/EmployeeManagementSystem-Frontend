@@ -1,5 +1,7 @@
 <template>
-    <h1>user admin page</h1>
+    <h2 class="my-6 mx-7 text-left text-3xl font-bold tracking-tight text-gray-900">
+        Users :
+    </h2>
     <div class=" bg-slate-200 mx-7 rounded-lg shadow-sm mb-10">
         <table class=" w-full overflow-scroll">
             <thead>
@@ -136,12 +138,12 @@ export default {
         },
         openPopup(id) {
             this.$store.dispatch("getUserById", id);
-            this.delay(400).then(() => this.setdata());
+            this.delay(1000).then(() => this.setdata());
         },
         closePopup() {
             this.popup = false;
         },
-        setdata() {            
+        setdata() {
             this.popup = !this.popup;
             this.updateUser._id = this.userState.otherUser._id;
             this.updateUser.email = this.userState.otherUser.email;

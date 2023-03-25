@@ -1,4 +1,7 @@
 <template>
+    <h2 class="my-6 mx-7 text-left text-3xl font-bold tracking-tight text-gray-900">
+        Assets :
+    </h2>
     <div class=" mx-4 mt-3">
         <search-bar-component />
     </div>
