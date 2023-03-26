@@ -27,8 +27,8 @@ export class SalaryService{
             'Content-Type': 'application/json'
         }});
     }
-    static getByAssignPerson(id){
-        let dataURL = `${serverURL}/salary/user/${id}`;
+    static getByAssignPerson(data){
+        let dataURL = `${serverURL}/salary/user/${data.id}?page=${data.page}`;
         return axios.get(dataURL,{headers: {
             'Content-Type': 'application/json'
         }});
