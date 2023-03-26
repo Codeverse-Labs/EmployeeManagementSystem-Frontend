@@ -15,9 +15,9 @@
                     <td class=" screen-md:hidden ">{{ asset.type.name }}</td>
                     <td class=" screen-md:hidden">{{ asset.serialNumber }}</td>
                     <td class=" screen-md:hidden" v-if="asset.assignPerson">{{ asset.assignPerson.name }}</td>
-                    <td class=" screen-md:hidden">-</td>
+                    <td class=" screen-md:hidden" v-else>-</td>
                     <td class=" screen-md:hidden" v-if="asset.assignDate">{{ formatDate(asset.assignDate) }}</td>
-                    <td class=" screen-md:hidden">-</td>
+                    <td class=" screen-md:hidden" v-else>-</td>
                     <td ><i class="fa fa-pen hover:text-green-500"></i>
                     </td>
                     <td><i class="fa fa-trash-can hover:text-red-500"></i></td>
@@ -28,7 +28,15 @@
 </template>
 
 <script>
+import moment from 'moment'
 export default {
     props: ['assets'],
+    methods:{
+        formatDate(value) {
+            if (value) {
+                return moment(String(value)).format('MMMM Do YYYY, h:mm a')
+            }
+        },
+    }
 }
 </script>
