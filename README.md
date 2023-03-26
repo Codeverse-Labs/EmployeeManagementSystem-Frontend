@@ -1,5 +1,20 @@
 # vue-forum-frontend
 
+~~~
+#src
+##assets
+##components
+##constants
+##helper
+##router
+##services
+##store
+###modules
+##views
+##app.vue
+##main.js
+~~~
+
 ## Project setup
 ```
 npm install
