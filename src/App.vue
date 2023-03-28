@@ -3,7 +3,6 @@
   <navMenu />
   <!-- pages -->
   <router-view />
-  <div class=" mb-60"></div>
   <!-- footer -->
   <Footer />
 
