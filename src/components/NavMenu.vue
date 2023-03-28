@@ -85,8 +85,16 @@
     </div>
 
     <!-- mobile menu -->
-    <div v-if="menu" class="mobile-menu md:hidden">
+    <div v-if="menu && userState.user && userState.user.role !== 'admin'" class="mobile-menu md:hidden">
       <router-link v-for="item in navigation" :key="item.name" :to="item.href" :class="[
+        item.isactive
+          ? 'bg-gray-900 text-white'
+          : 'block text-sm font-bold px-2 py-4 hover:bg-green-500 transition duration-300',
+        'px-3 py-2 rounded-md text-sm font-medium',
+      ]">{{ item.name }}</router-link>
+    </div>
+    <div v-if="menu && userState.user && userState.user.role === 'admin'" class="mobile-menu md:hidden">
+      <router-link v-for="item in adminNavigation" :key="item.name" :to="item.href" :class="[
         item.isactive
           ? 'bg-gray-900 text-white'
           : 'block text-sm font-bold px-2 py-4 hover:bg-green-500 transition duration-300',
