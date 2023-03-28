@@ -3,6 +3,7 @@
         <h2 class="text-left text-3xl font-bold tracking-tight text-gray-900">
             Leave History :
         </h2>
+        <!-- Leave Request Button -->
         <button
             class="p-3 text-white bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm text-center"
             @click="openPopup()">
@@ -10,6 +11,11 @@
         </button>
     </div>
 
+    <!-- Leave list -->
+    <leave-list-component :leaves="leaveState.leaves" />
+
+    <!-- pagination -->
+    <PaginationComponent :getPage="getPage" :totalPages="leaveState.totalPages" />
 
 
 
@@ -30,7 +36,7 @@
                 </svg>
                 <span class="sr-only">Close modal</span>
             </button>
-            <div class="flex flex-col p-7" v-if="!oneday&!manyday">
+            <div class="flex flex-col p-7" v-if="!oneday & !manyday">
                 <button
                     class="p-3 mb-5 text-white bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm text-center"
                     @click="oneDay()">
@@ -54,7 +60,29 @@
 </template>
 
 <script>
+import LeaveListComponent from '@/components/LeaveListComponent.vue';
+import PaginationComponent from '@/components/PaginationComponent.vue';
+import { mapGetters } from 'vuex';
+
 export default {
+    components: {
+        LeaveListComponent,
+        PaginationComponent
+    },
+    computed: mapGetters({
+        leaveState: "getLeaveState",
+        userState: "getUserState"
+    }),
+    created: function () {
+        this.$watch(
+            () => this.$route.query,
+            () => {
+                this.$store.dispatch("getAllLeavesByEmployee", { page: this.$route.query.page, id: this.userState._id });
+                console.log("query", this.$route.query.page)
+            },
+        ),
+            this.$store.dispatch("getAllLeavesByEmployee", { page: this.$route.query.page, id: this.userState.user._id });
+    },
     data() {
         return {
             popup: false,
@@ -69,7 +97,7 @@ export default {
             this.manyday = false;
         },
         openPopup() {
-            this.popup = true;            
+            this.popup = true;
             this.oneday = false;
             this.manyday = false;
         },
@@ -79,6 +107,10 @@ export default {
         manyDay() {
             this.manyday = true;
         },
+        getPage(page) {
+            this.page = page
+            this.$router.push({ name: "userLeaves", query: { page: page } })
+        }
     },
 }
 </script>
