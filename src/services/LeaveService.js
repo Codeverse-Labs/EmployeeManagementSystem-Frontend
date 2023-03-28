@@ -21,14 +21,14 @@ export class LeaveService{
             'Content-Type': 'application/json'
         }});
     }
-    static getAllByReportPerson(id){
-        let dataURL = `${serverURL}/leaves/reportPerson/${id}`;
+    static getAllByReportPerson(id,page){
+        let dataURL = `${serverURL}/leaves/reportPerson/${id}?page=${page}`;
         return axios.get(dataURL,{headers: {
             'Content-Type': 'application/json'
         }});
     }
-    static getAllByEmployee(id){
-        let dataURL = `${serverURL}/leaves/user/${id}`;
+    static getAllByEmployee(id,page){
+        let dataURL = `${serverURL}/leaves/user/${id}?page=${page}`;
         return axios.get(dataURL,{headers: {
             'Content-Type': 'application/json'
         }});

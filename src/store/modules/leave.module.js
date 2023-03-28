@@ -53,10 +53,10 @@ const actions = {
             commit("SET_LOADING", false);
         }
     },
-    getAllLeavesByType: async function ({ commit }, payload) {
+    getAllLeavesByEmployee: async function ({ commit }, payload) {
         try {
             commit("SET_LOADING", true);
-            let response = await LeaveService.getByType(payload.id, payload.page);
+            let response = await LeaveService.getAllByEmployee(payload.id, payload.page);
             if (response.data.status == 200) {
                 console.log(response.data.data.docs)
             } else {
@@ -69,10 +69,10 @@ const actions = {
             commit("SET_LOADING", false);
         }
     },
-    getAllLeavesByUser: async function ({ commit }, payload) {
+    getAllLeavesByReportPerson: async function ({ commit }, payload) {
         try {
             commit("SET_LOADING", true);
-            let response = await LeaveService.getByAssignPerson(payload);
+            let response = await LeaveService.getAllByReportPerson(payload.id, payload.page);
             if (response.data.status == 200) {
                 console.log(response.data.data.docs)
             } else {
