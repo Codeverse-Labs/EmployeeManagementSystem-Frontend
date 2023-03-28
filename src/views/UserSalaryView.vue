@@ -82,7 +82,7 @@
             <h2 class="text-xl font-light text-gray-500">Rs.{{ dollarRate }}</h2>
           </div>
           <div class="flex flex-row justify-between mb-3">
-            <p class="text-xl font-semibold text-gray-900">EPF(8%)</p>
+            <p class="text-xl font-semibold text-gray-900">EPF(12%)</p>
             <h2 class="text-xl font-light text-gray-500 ">Rs.{{ epf }}</h2>
           </div>
           <div class="flex flex-row justify-between mb-10">
