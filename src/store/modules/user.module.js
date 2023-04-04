@@ -132,21 +132,22 @@ const actions = {
             NotificationHelper.errorhandler(error)
         }
     },
-    updateUser: async function ({ commit }, user) {
+    updateUser: async function ({ commit }, data) {
         try {
             commit("SET_LOADING", true);
-            await UserService.updateUser(user, user._id);
+            await UserService.updateUser(data,data._id);
             NotificationHelper.notificationhandler("User updated successfully!")
             commit("SET_LOADING", false);
         } catch (error) {
             NotificationHelper.errorhandler(error)
         }
     },
-    updateLoggedUser: async function ({ commit }, user) {
+    updateLoggedUser: async function ({ commit }, data) {
         try {
             commit("SET_LOADING", true);
-            await UserService.updateUser(user, user._id);
-            let response = await UserService.getUser(user._id);
+            await UserService.updateUser(data,data._id);
+            NotificationHelper.notificationhandler("User updated successfully!")
+            let response = await UserService.getUser(data._id);
             commit("SET_LOGGED_USER", { user: response.data.data })
             NotificationHelper.notificationhandler("User updated successfully!")
             commit("SET_LOADING", false);
