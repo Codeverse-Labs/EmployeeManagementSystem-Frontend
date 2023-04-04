@@ -68,7 +68,7 @@ export default {
     data() {
         return {
             user: {
-                _id:'',
+                _id: '',
                 name: '',
                 imageurl: '',
                 technologies: [],
@@ -80,14 +80,17 @@ export default {
     methods: {
         submit: async function () {
             const formData = new FormData();
-            formData.append('image', this.selectedImage);
+            formData.append('file', this.selectedImage);
+            formData.append('name', this.user._id);
+            formData.append("upload_preset", "HasthiyaEMS");
+            formData.append("cloud_name", "dlaimiqfi");
             try {
-                const response = await fetch('http://localhost:8000/users/update/image', {
+                const response = await fetch('https://api.cloudinary.com/v1_1/dlaimiqfi/image/upload', {
                     method: 'POST',
                     body: formData,
                 });
                 const data = await response.json();
-                this.user.imageurl = data.secure_url;
+                this.user.imageurl = data.url;
             } catch (err) {
                 console.log(err);
             }
