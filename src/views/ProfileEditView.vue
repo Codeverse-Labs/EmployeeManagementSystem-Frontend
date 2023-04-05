@@ -27,10 +27,20 @@
                                 placeholder="Your name" />
                         </div>
                         <div>
-                            <input id="imageurl" name="imageurl" type="imageurl" v-model="user.imageurl"
-                                autocomplete="imageurl" required=""
+                            <input id="address" address="address" type="address" v-model="user.address"
+                                autocomplete="address" required=""
                                 class="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm mb-2"
-                                placeholder="Your image url" />
+                                placeholder="Your address" />
+                        </div>
+                        <div>
+                            <input id="nic" nic="nic" type="text" v-model="user.nic" autocomplete="nic" required=""
+                                class="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm mb-2"
+                                placeholder="Your nic" />
+                        </div>
+                        <div>
+                            <input id="dob" name="dob" type="date" v-model="user.dob" autocomplete="dob" required=""
+                                class="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm mb-2"
+                                placeholder="Your Date Of Birth" />
                         </div>
                         <div>
                             <select name="" id="" v-model="user.technologies"
@@ -40,6 +50,8 @@
                                     v-for="technology in technologyState.technologies">{{ technology.name }}
                                 </option>
                             </select>
+                            <Multiselect v-model="value" mode="tags" placeholder="Select your characters" :options="options"
+                                :search="true" />
                         </div>
                     </div>
                     <div>
@@ -57,11 +69,18 @@
 <script>
 import router from '@/router';
 import { mapGetters } from 'vuex'
+import moment from 'moment'
+import Multiselect from '@vueform/multiselect'
+import "@vueform/multiselect/themes/default.css"
+
 export default {
     computed: mapGetters({
         userState: "getUserState",
         technologyState: "getTechnologyState",
     }),
+    components: {
+        Multiselect,
+    },
     created() {
         this.setdata();
     },
@@ -70,11 +89,21 @@ export default {
             user: {
                 _id: '',
                 name: '',
+                address: '',
+                nic: '',
+                dob: '',
                 imageurl: '',
                 technologies: [],
             },
             imageUrl: null,
             selectedImage: null,
+            value: [],
+            options: [
+                { value: 'batman', label: 'Batman' },
+                { value: 'robin', label: 'Robin' },
+                { value: 'joker', label: 'Joker' },
+            ]
+
         }
     },
     methods: {
@@ -101,6 +130,9 @@ export default {
             this.user._id = this.userState.user._id
             this.user.name = this.userState.user.name
             this.user.imageurl = this.userState.user.imageurl
+            this.user.address = this.userState.user.address
+            this.user.dob = this.formatDate(this.userState.user.dob)
+            this.user.nic = this.userState.user.nic
             this.user.technologies = this.userState.user.technologies
         },
         onFileSelected(event) {
@@ -108,8 +140,17 @@ export default {
             const file = event.target.files[0];
             this.imageUrl = URL.createObjectURL(file);
         },
+        formatDate(value) {
+            if (value) {
+                return moment(String(value)).format('YYYY-MM-DD')
+            }
+        },
+        technologyLabel(technology) {
+            return technology.name
+        }
     },
 }
+
 </script>
 
-<style></style>
+<style src="@vueform/multiselect/themes/default.css"></style>
