@@ -10,6 +10,24 @@ const routes = [
     meta:{auth:true}
   },
   {
+    path: '/userByTech/:id',
+    name: 'userByTech',
+    component: () => import('../views/UserByTechView.vue'),
+    meta:{auth:true}
+  },
+  {
+    path: '/userByDesignation/:id',
+    name: 'userByDesignation',
+    component: () => import('../views/UserByDesignationView.vue'),
+    meta:{auth:true}
+  },
+  {
+    path: '/userByName/:searchTerm',
+    name: 'userByName',
+    component: () => import('../views/UserByNameView.vue'),
+    meta:{auth:true}
+  },
+  {
     path: '/editProfile',
     name: 'editProfile',
     component: () => import('../views/ProfileEditView.vue'),
