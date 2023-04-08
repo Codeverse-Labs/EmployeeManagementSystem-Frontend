@@ -100,6 +100,9 @@ export default {
   components: {
     navMenu,
     Footer
+  },
+  created() {
+    this.$store.dispatch('setdata')
   }
 }
 </script>

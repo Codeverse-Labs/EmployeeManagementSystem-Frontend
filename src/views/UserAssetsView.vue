@@ -41,7 +41,7 @@ export default {
         },
     },
     created() {
-        this.$store.dispatch('getAllAssetsByUser', this.userState.user._id)
+        this.$store.dispatch('getAllAssetsByUser', localStorage.getItem('userID'))
     },
 }
 </script>
