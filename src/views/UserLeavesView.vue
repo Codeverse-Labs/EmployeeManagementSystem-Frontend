@@ -77,11 +77,11 @@ export default {
         this.$watch(
             () => this.$route.query,
             () => {
-                this.$store.dispatch("getAllLeavesByEmployee", { page: this.$route.query.page, id: this.userState._id });
+                this.$store.dispatch("getAllLeavesByEmployee", { page: this.$route.query.page, id: localStorage.getItem('userID') });
                 console.log("query", this.$route.query.page)
             },
         ),
-            this.$store.dispatch("getAllLeavesByEmployee", { page: this.$route.query.page, id: this.userState.user._id });
+            this.$store.dispatch("getAllLeavesByEmployee", { page: this.$route.query.page, id: localStorage.getItem('userID') });
     },
     data() {
         return {

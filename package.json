@@ -19,6 +19,7 @@
     "core-js": "^3.8.3",
     "moment": "^2.29.4",
     "notiwind": "^1.2.6",
+    "secure-ls": "^1.2.6",
     "vue": "^3.2.13",
     "vue-multi-select": "^4.6.0",
     "vue-multiselect": "^2.1.7",
@@ -26,7 +27,8 @@
     "vue2-editor": "^2.10.3",
     "vue3-multiselect-checkboxed": "^0.0.8",
     "vue3-popper": "^1.5.0",
-    "vuex": "^4.0.0"
+    "vuex": "^4.0.0",
+    "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

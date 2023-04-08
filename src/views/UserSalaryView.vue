@@ -147,11 +147,11 @@ export default {
     this.$watch(
       () => this.$route.query,
       () => {
-        this.$store.dispatch("getAllSalaryByUser",{ id: this.userState.user._id, page: this.$route.query.page });
+        this.$store.dispatch("getAllSalaryByUser",{ id: localStorage.getItem('userID'), page: this.$route.query.page });
         console.log("query", this.$route.query.page)
       },
     ),
-    this.$store.dispatch('getAllSalaryByUser', { id: this.userState.user._id, page: this.$route.query.page })
+    this.$store.dispatch('getAllSalaryByUser', { id: localStorage.getItem('userID'), page: this.$route.query.page })
   },
   data() {
     return {

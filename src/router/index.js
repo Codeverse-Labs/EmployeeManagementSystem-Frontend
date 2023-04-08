@@ -113,9 +113,9 @@ const router = createRouter({
 });
 
 router.beforeEach((to,from,next)=>{
-  if(to.meta.auth && !store.getters.getUserState.token){
+  if(to.meta.auth && !localStorage.getItem('token')){
     next('/signin')
-  }else if(!to.meta.auth && store.getters.getUserState.token){
+  }else if(!to.meta.auth && localStorage.getItem('token')){
     next('/')
   }else if(to.meta.admin && store.getters.getUserState.user.role !='admin'){
     next('/')
