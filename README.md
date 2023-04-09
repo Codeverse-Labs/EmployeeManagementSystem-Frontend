@@ -1,4 +1,6 @@
 # Hasthiya Employee Management System
+
+See [Backend](https://github.com/thenuka99/EmployeeManagementSystem-Backend).
 ## Branching convension
 
 `main` branch will be used to deploy production releases.
@@ -18,65 +20,37 @@ Follow the current naming convention and folder structure.
 
 ~~~
 .
-├── client
-│   └── src
-│       ├── assets
-│       ├── components
-│       ├── constants
-│       ├── helper
-│       ├── router
-│       ├── services
-│       ├── store
-│       │   └── modules
-│       ├── views
-│       ├── app.vue
-│       └── main.js
-└── server
-    ├── config
-    ├── controllers
-    ├── middleware
-    ├── models
-    ├── routes
-    ├── utils
-    ├── .env
-    └── index.js
+└── client
+    └── src
+        ├── assets
+        ├── components
+        ├── constants
+        ├── helper
+        ├── router
+        ├── services
+        ├── store
+        │   └── modules
+        ├── views
+        ├── app.vue
+        └── main.js
+
 ~~~
 
 ## Project setup
-
-### setup backend
 ```
-cd Server
 npm install
 ```
-### setup front end
-seperate terminal
 ```
-cd client
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-cd Server
-npm start
-```
-
-seperate terminal
-```
-cd client
 npm run serve
 ```
 
 ### Compiles and minifies for production
 ```
-cd client
 npm run build
 ```
 
 ### Lints and fixes files
 ```
-cd client
 npm run lint
 ```
 
