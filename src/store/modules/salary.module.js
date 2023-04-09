@@ -83,29 +83,29 @@ const actions = {
             commit("SET_LOADING", false);
         }
     },
-    deleteAsset: async function ({ commit }, id) {
+    deleteSalary: async function ({ commit }, id) {
         try {
             commit("SET_LOADING", true);
             await SalaryService.delete(id);
             store.dispatch('getAllSalary')
-            NotificationHelper.notificationhandler("Asset deleted successfully!")
+            NotificationHelper.notificationhandler("Salary deleted successfully!")
             commit("SET_LOADING", false);
         } catch (error) {
             NotificationHelper.errorhandler(error)
         }
     },
-    updateAsset: async function ({ commit }, salary) {
+    updateSalary: async function ({ commit }, salary) {
         try {
             commit("SET_LOADING", true);
             await SalaryService.update(salary, salary._id);
             store.dispatch('getAllSalary')
-            NotificationHelper.notificationhandler("Asset updated successfully!")
+            NotificationHelper.notificationhandler("Salary updated successfully!")
             commit("SET_LOADING", false);
         } catch (error) {
             NotificationHelper.errorhandler(error)
         }
     },
-    getAssetById: async function ({ commit }, id) {
+    getSalaryById: async function ({ commit }, id) {
         try {
             commit("SET_LOADING", true);
             let response = await SalaryService.getById(id);
@@ -115,7 +115,7 @@ const actions = {
             NotificationHelper.errorhandler(error)
         }
     },    
-    createAsset:async function({commit},data){
+    createSalary:async function({commit},data){
         try {
             commit("SET_LOADING", true);
             await SalaryService.create(data);
