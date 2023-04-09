@@ -43,15 +43,13 @@
                                 placeholder="Your Date Of Birth" />
                         </div>
                         <div>
-                            <select name="" id="" v-model="user.technologies"
+                            <select name="" id="" v-model="user.technologies" multiple
                                 class="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm mb-2">
                                 <option value="">Select Technology</option>
                                 <option :value="technology._id" v-bind:key="technology._id"
                                     v-for="technology in technologyState.technologies">{{ technology.name }}
                                 </option>
                             </select>
-                            <Multiselect v-model="value" mode="tags" placeholder="Select your characters" :options="options"
-                                :search="true" />
                         </div>
                     </div>
                     <div>
@@ -70,17 +68,12 @@
 import router from '@/router';
 import { mapGetters } from 'vuex'
 import moment from 'moment'
-import Multiselect from '@vueform/multiselect'
-import "@vueform/multiselect/themes/default.css"
 
 export default {
     computed: mapGetters({
         userState: "getUserState",
         technologyState: "getTechnologyState",
     }),
-    components: {
-        Multiselect,
-    },
     created() {
         this.setdata();
     },
@@ -97,13 +90,6 @@ export default {
             },
             imageUrl: null,
             selectedImage: null,
-            value: [],
-            options: [
-                { value: 'batman', label: 'Batman' },
-                { value: 'robin', label: 'Robin' },
-                { value: 'joker', label: 'Joker' },
-            ]
-
         }
     },
     methods: {
@@ -145,9 +131,6 @@ export default {
                 return moment(String(value)).format('YYYY-MM-DD')
             }
         },
-        technologyLabel(technology) {
-            return technology.name
-        }
     },
 }
 

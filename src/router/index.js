@@ -76,6 +76,24 @@ const routes = [
     meta:{auth:true,admin:true}
   },
   {
+    path: '/assetsByType/:id',
+    name: 'assetsByType',
+    component: () => import('../views/AssetsAdminByTypeView'),
+    meta:{auth:true}
+  },
+  {
+    path: '/addassets',
+    name: 'addassets',
+    component: () => import('../views/AssetManageView.vue'),
+    meta:{auth:true}
+  },
+  {
+    path: '/editassets/:AssetId',
+    name: 'editassets',
+    component: () => import('../views/AssetManageView.vue'),
+    meta:{auth:true}
+  },
+  {
     path: '/userAssets',
     name: 'userAssets',
     component: () => import('../views/UserAssetsView.vue'),
