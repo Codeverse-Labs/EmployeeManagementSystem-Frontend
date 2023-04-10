@@ -1,7 +1,6 @@
 <template>
-
   <!-- profile -->
-  <div class="p-16 bg-slate-200">
+  <div class="p-4 bg-slate-200 md:p-16">
     <div class="p-8 bg-white shadow-xl mt-24 rounded-lg">
       <!-- user img -->
       <div
@@ -9,9 +8,51 @@
         <img :src="userState.user.imageurl" alt="" class=" rounded-full ">
       </div>
 
-      <div class="mt-20 text-center border-b pb-12">
-        <h1 class="text-4xl font-medium text-gray-700">{{ userState.user.name }} </h1>
-        <p class="text-gray-600 text-center font-light lg:px-16 mt-5">{{ userState.user.bio }}</p>
+      <div class="mt-20 border-b pb-12">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+
+          <div class=" text-left">
+            <h1 class=" text-xs font-medium text-gray-400">Full Name</h1>
+            <h1 class="text-base font-medium text-gray-700" v-if="userState.user.name">{{ userState.user.name }} </h1>            
+            <h1 class="text-base font-medium text-gray-700" v-else>-</h1>
+          </div>
+
+          <div class=" text-left">
+            <h1 class=" text-xs font-medium text-gray-400">Email</h1>
+            <h1 class="text-base font-medium text-gray-700" v-if="userState.user.email">{{ userState.user.email }} </h1>            
+            <h1 class="text-base font-medium text-gray-700" v-else>-</h1>
+          </div>
+
+          <div class=" text-left">
+            <h1 class=" text-xs font-medium text-gray-400">Designation</h1>
+            <h1 class="text-base font-medium text-gray-700" v-if="userState.user.designation.name">{{ userState.user.designation.name }} </h1>            
+            <h1 class="text-base font-medium text-gray-700" v-else>-</h1>
+          </div>
+
+          <div class=" text-left">
+            <h1 class=" text-xs font-medium text-gray-400">Birthday</h1>
+            <h1 class="text-base font-medium text-gray-700" v-if="userState.user.dob">{{ formatDate(userState.user.dob) }}</h1>            
+            <h1 class="text-base font-medium text-gray-700" v-else>-</h1>
+          </div>
+
+          <div class=" text-left">
+            <h1 class=" text-xs font-medium text-gray-400">NIC</h1>
+            <h1 class="text-base font-medium text-gray-700" v-if="userState.user.nic">{{ userState.user.nic }} </h1>            
+            <h1 class="text-base font-medium text-gray-700" v-else>-</h1>
+          </div>
+
+          <div class=" text-left">
+            <h1 class=" text-xs font-medium text-gray-400">Report Person</h1>
+            <h1 class="text-base font-medium text-gray-700" v-if="userState.user.reportPerson.name">{{ userState.user.reportPerson.name }} </h1>            
+            <h1 class="text-base font-medium text-gray-700" v-else>-</h1>
+          </div>
+
+          <div class=" text-left">
+            <h1 class=" text-xs font-medium text-gray-400">Adderss</h1>
+            <h1 class="text-base font-medium text-gray-700" v-if="userState.user.address">{{ userState.user.address }} </h1>            
+            <h1 class="text-base font-medium text-gray-700" v-else>-</h1>
+          </div>
+        </div>        
       </div>
     </div>
   </div>
@@ -22,12 +63,11 @@
       <i class="fa fa-pen"></i>
     </button>
   </router-link>
-
-
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import moment from 'moment'
 
 export default {
   data() {
@@ -38,9 +78,14 @@ export default {
   computed: mapGetters({
     userState: "getUserState",
   }),
+    methods: {
+        formatDate(value) {
+            if (value) {
+                return moment(String(value)).format(' Do MMMM YYYY')
+            }
+        },
+    },
 }
 </script>
 
-<style>
-
-</style>
+<style></style>
