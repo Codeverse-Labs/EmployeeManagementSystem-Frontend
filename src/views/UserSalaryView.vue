@@ -36,9 +36,9 @@
 
   <!-- salary sheet -->
   <div id="popup-modal" v-if="popup"
-    class="fixed top-0 left-0 right-0 z-50  p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full justify-center"
+    class="fixed top-0 left-0 right-0 z-50  p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-full justify-center"
     style="background-color:rgba(0, 0, 0, 0.400)">
-    <div class="relative bg-white rounded-lg shadow self-center px-20  m-auto">
+    <div class="relative bg-white rounded-lg shadow self-center px-20  m-auto h-full">
       <button type="button" @click="closePopup()"
         class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-red-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
         data-modal-hide="popup-modal">
