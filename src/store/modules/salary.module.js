@@ -38,7 +38,7 @@ const actions = {
     getAllSalary: async function ({ commit }, payload) {
         try {
             commit("SET_LOADING", true);
-            let response = await SalaryService.getAll(payload);
+            let response = await SalaryService.getAll(payload.page);
             if (response.data.status == 200) {
                 console.log("salaries"+response.data.data.docs)
             } else {
