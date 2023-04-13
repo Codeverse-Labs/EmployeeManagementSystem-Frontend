@@ -146,10 +146,19 @@ const actions = {
         try {
             commit("SET_LOADING", true);
             await UserService.updateUser(data, data._id);
-            NotificationHelper.notificationhandler("User updated successfully!")
             let response = await UserService.getUser(data._id);
             commit("SET_LOGGED_USER", { user: response.data.data })
-            NotificationHelper.notificationhandler("User updated successfully!")
+            NotificationHelper.notificationhandler("User Details updated successfully!")
+            commit("SET_LOADING", false);
+        } catch (error) {
+            NotificationHelper.errorhandler(error)
+        }
+    },
+    updateLoggedUserPassword: async function ({ commit }, data) {
+        try {
+            commit("SET_LOADING", true);
+            await UserService.updateUserPassword(data, data._id);
+            NotificationHelper.notificationhandler("Password updated successfully!")
             commit("SET_LOADING", false);
         } catch (error) {
             NotificationHelper.errorhandler(error)

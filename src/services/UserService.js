@@ -54,8 +54,14 @@ export class UserService{
             'Content-Type': 'application/json'
         }});
     }
-    static deleteUser(userId){
+    static updateUserPassword(user,userId){
         let dataURL = `${serverURL}/users/${userId}`;
+        return axios.put(dataURL,user,{headers: {
+            'Content-Type': 'application/json'
+        }});
+    }
+    static deleteUser(userId){
+        let dataURL = `${serverURL}/users/password/${userId}`;
         return axios.delete(dataURL,{headers: {
             'Content-Type': 'application/json'
         }});
