@@ -143,7 +143,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import moment from 'moment'
-
+import { NotificationHelper } from "@/helper/NotificationHelper";
 export default {
   data() {
     return {
@@ -154,7 +154,6 @@ export default {
         Password: '',
         newpassword: '',
         confirmpassword: '',
-        // _id: this.userState.user._id,
       }
     }
   },
@@ -162,6 +161,14 @@ export default {
     userState: "getUserState",
   }),
   methods: {
+    submit: async function () {
+      if (this.changePassword.newpassword != this.changePassword.confirmpassword) {
+        NotificationHelper.errorhandler("New Password and Confirm Password does not match");
+      } else {
+        this.$store.dispatch("updateLoggedUserPassword", { password: this.changePassword.Password, newpassword: this.changePassword.newpassword,_id: this.userState.user._id });
+        this.closePopup();
+      }
+    },
     formatDate(value) {
       if (value) {
         return moment(String(value)).format(' Do MMMM YYYY')
