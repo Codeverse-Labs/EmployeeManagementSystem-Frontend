@@ -10,6 +10,12 @@ const routes = [
     meta:{auth:true}
   },
   {
+    path: '/user/:id',
+    name: 'user',
+    component: () => import('../views/OtherUserProfileView.vue'),
+    meta:{auth:true}
+  },
+  {
     path: '/userByTech/:id',
     name: 'userByTech',
     component: () => import('../views/UserByTechView.vue'),
