@@ -54,7 +54,7 @@
             </div>
           </div>        
         </div>
-        <div class="flex py-2">
+        <div class="grid grid-cols-3 md:grid-cols-10 gap-4 py-2">
             <div v-for="tech in user.technologies" v-bind:key="tech._id"
               class=" px-3 rounded-md bg-slate-300 mr-2 hover:bg-slate-400 hover:text-white"
               >{{ tech.name }}</div>
