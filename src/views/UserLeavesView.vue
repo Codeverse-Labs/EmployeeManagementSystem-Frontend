@@ -22,9 +22,9 @@
 
     <!-- Request Leave-->
     <div id="popup-modal" v-if="popup"
-        class="fixed top-0 left-0 right-0 z-50  p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full justify-center"
+        class="flex fixed top-0 left-0 right-0 z-50  p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full justify-center"
         style="background-color:rgba(0, 0, 0, 0.400)">
-        <div class="relative bg-white rounded-lg shadow self-center px-20  max-w-md m-auto">
+        <div class="relative bg-white rounded-lg shadow self-center px-20  m-auto">
             <button type="button" @click="closePopup()"
                 class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-red-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                 data-modal-hide="popup-modal">
@@ -50,10 +50,10 @@
             </div>
 
             <div class="" v-if="oneday">
-                oneday
+                <oneday-leave-form :closePopup="closePopup" />
             </div>
             <div class="" v-if="manyday">
-                manyday
+                <many-day-leave-form :closePopup="closePopup"/>
             </div>
         </div>
     </div>
@@ -63,11 +63,15 @@
 import LeaveListComponent from '@/components/LeaveListComponent.vue';
 import PaginationComponent from '@/components/PaginationComponent.vue';
 import { mapGetters } from 'vuex';
+import OnedayLeaveForm from '@/components/OnedayLeaveForm.vue';
+import ManyDayLeaveForm from '@/components/ManyDayLeaveForm.vue';
 
 export default {
     components: {
         LeaveListComponent,
-        PaginationComponent
+        PaginationComponent,
+        OnedayLeaveForm,
+        ManyDayLeaveForm
     },
     computed: mapGetters({
         leaveState: "getLeaveState",
