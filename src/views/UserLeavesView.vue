@@ -10,12 +10,20 @@
             <i class="fa fa-add"></i> Request Leave
         </button>
     </div>
+    <!-- choose between leave list -->
+    <div class=" m-4 pb-7 bg-white rounded-lg shadow-xl">
+        <button class="p-3 text-white w-1/2 rounded-tl-lg text-sm text-center bg-gray-400 hover:bg-gray-500 font-bold" v-if="userleaves" @click="isUserLeaves()">Your Leaves</button>
+        <button class="p-3 text-black w-1/2 rounded-tl-lg text-sm text-center bg-white font-bold" v-else>Your Leaves</button>
+        <button class="p-3 text-black w-1/2 rounded-tr-lg text-sm text-center bg-white font-bold" v-if="userleaves">Others Leaves</button>
+        <button class="p-3 text-white w-1/2 rounded-tr-lg text-sm text-center bg-gray-400 hover:bg-gray-500 font-bold" v-else @click="isUserLeaves()">Others Leaves</button>
 
-    <!-- Leave list -->
-    <leave-list-component :leaves="leaveState.leaves" />
+        <!-- Leave list -->
+        <leave-list-component :leaves="leaveState.leaves" />
 
-    <!-- pagination -->
-    <PaginationComponent :getPage="getPage" :totalPages="leaveState.totalPages" />
+        <!-- pagination -->
+        <PaginationComponent :getPage="getPage" :totalPages="leaveState.totalPages" />
+    </div>
+
 
 
 
@@ -36,6 +44,9 @@
                 </svg>
                 <span class="sr-only">Close modal</span>
             </button>
+
+            <!-- body -->
+            <!-- choose which kind of leave -->
             <div class="flex flex-col p-7" v-if="!oneday & !manyday">
                 <button
                     class="p-3 mb-5 text-white bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm text-center"
@@ -49,12 +60,14 @@
                 </button>
             </div>
 
+            <!-- form for choose type of leave -->
             <div class="" v-if="oneday">
                 <oneday-leave-form :closePopup="closePopup" />
             </div>
             <div class="" v-if="manyday">
-                <many-day-leave-form :closePopup="closePopup"/>
+                <many-day-leave-form :closePopup="closePopup" />
             </div>
+
         </div>
     </div>
 </template>
@@ -81,8 +94,20 @@ export default {
         this.$watch(
             () => this.$route.query,
             () => {
+                console.log(this.$route.query.userleaves)
+                if(this.$route.query.userleaves){
+                this.$store.dispatch("getAllLeavesByReportPerson", { page: this.$route.query.page, id: localStorage.getItem('userID') });
+                }else{
                 this.$store.dispatch("getAllLeavesByEmployee", { page: this.$route.query.page, id: localStorage.getItem('userID') });
-                console.log("query", this.$route.query.page)
+                }
+            },
+            () => this.$route.userleaves,
+            () => {
+                if(this.$route.query.userleaves){
+                this.$store.dispatch("getAllLeavesByReportPerson", { page: this.$route.query.page, id: localStorage.getItem('userID') });
+                }else{
+                this.$store.dispatch("getAllLeavesByEmployee", { page: this.$route.query.page, id: localStorage.getItem('userID') });
+                }
             },
         ),
             this.$store.dispatch("getAllLeavesByEmployee", { page: this.$route.query.page, id: localStorage.getItem('userID') });
@@ -92,6 +117,7 @@ export default {
             popup: false,
             oneday: false,
             manyday: false,
+            userleaves:false,
         }
     },
     methods: {
@@ -113,7 +139,15 @@ export default {
         },
         getPage(page) {
             this.page = page
-            this.$router.push({ name: "userLeaves", query: { page: page } })
+            this.$router.push({ name: "userLeaves", query: { page: page,userleaves:this.userleaves } })
+        },
+        isUserLeaves() {
+            this.userleaves=!this.userleaves
+            if(this.userleaves){
+            this.$router.push({ name: "userLeaves", query: { page: 1 , userleaves:this.userleaves } })
+            }else{
+            this.$router.push({ name: "userLeaves", query: { page: 1  } })
+            }
         }
     },
 }
