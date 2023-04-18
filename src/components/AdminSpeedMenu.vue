@@ -1,5 +1,5 @@
 <template>
-    <div data-dial-init class="fixed right-6 bottom-6 group">
+    <div data-dial-init class="fixed right-6 bottom-32 md:bottom-24 group">
         <!-- menu -->
         <div id="speed-dial-menu-text-inside-button-square" class="flex flex-col items-center mb-4 space-y-2"
             v-if="open">
@@ -77,7 +77,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

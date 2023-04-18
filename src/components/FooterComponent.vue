@@ -1,5 +1,5 @@
 <template>
-    <footer aria-label="Site Footer" class="bg-white ">
+    <footer aria-label="Site Footer" class="bg-white mt-auto">
         <div class="max-w-screen-xl px-4 pt-1  mx-auto sm:px-6 lg:px-8">
             <div class=" border-t border-gray-100 sm:flex  py-4 sm:items-center sm:justify-between">
                 <nav aria-label="Footer Navigation - Support">
