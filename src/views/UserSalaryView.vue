@@ -40,7 +40,7 @@
     style="background-color:rgba(0, 0, 0, 0.400)">
     <div class="relative bg-white rounded-lg shadow self-center px-20  m-auto h-full">
       <button type="button" @click="closePopup()"
-        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-red-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+        class="no-print absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-red-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
         data-modal-hide="popup-modal">
         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg">
@@ -90,7 +90,7 @@
             <h2 class="text-xl font-light text-gray-500 underline decoration-double underline-offset-8">Rs.{{ total }}
             </h2>
           </div>
-          <button @click="print">Print</button>
+          <button @click="print" class=" no-print">Print</button>
         </div>
       </div>
     </div>
@@ -166,3 +166,15 @@ export default {
   },
 };
 </script>
+
+<style>
+@page { size: auto;  margin: 0mm; }
+
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
+</style>
