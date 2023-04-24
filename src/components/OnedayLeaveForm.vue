@@ -72,7 +72,7 @@ export default {
     }),
     methods: {
         submit: async function () {
-                this.$store.dispatch("createLeave", { leaveTo:this.leave.day,leaveFrom:this.leave.day, reason:this.leave.reason, isMedical:this.leave.isMedical, isFullday:this.leave.isFullday,isOneday:true, reportPersonId:this.userState.user.reportPerson._id,employee:this.userState.user._id });
+                this.$store.dispatch("createLeave", { leaveTo:this.leave.day,leaveFrom:this.leave.day, reason:this.leave.reason, isMedical:this.leave.isMedical, isFullday:this.leave.isFullday,isOneday:true, reportPerson:this.userState.user.reportPerson._id,employee:this.userState.user._id });
                 this.closePopup()
         },
     },
