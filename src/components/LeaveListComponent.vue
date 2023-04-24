@@ -95,11 +95,11 @@
                         <p class="text-base font-medium text-gray-700 break-all break-words">{{ leave.reason }} </p>
                     </div>
                     <div class="grid grid-cols-1 gap-6 md:grid-cols-2" v-if="leave.status=='Pending' && leave.reportPerson._id==userState.user._id">
-                        <button class="justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white  hover:bg-green-700">Accept</button>
-                        <button class="justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white  hover:bg-red-700">Reject</button>
+                        <button class="justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white  hover:bg-green-700" @click="updateLeaveStatus({_id:leave._id,status:'Accepted'})">Accept</button>
+                        <button class="justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white  hover:bg-red-700" @click="updateLeaveStatus({_id:leave._id,status:'Rejected'})">Reject</button>
                     </div>
                     <div class="grid grid-cols-1 gap-6" v-if="leave.status=='Pending' && leave.employee._id==userState.user._id">
-                        <button class="justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white  hover:bg-red-700">Cancel</button>
+                        <button class="justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white  hover:bg-red-700" @click="updateLeaveStatus({_id:leave._id,status:'Canceled'})">Cancel</button>
                     </div>
             </div>
         </div>
@@ -142,6 +142,11 @@ export default {
             this.popup = true;
             this.leave = leave
         },
+        updateLeaveStatus(data){
+            this.$store.dispatch("updateLeave", { _id:data._id,status:data.status});
+            this.closePopup();
+            window.location.reload()
+        }
     }
 }
 </script>
