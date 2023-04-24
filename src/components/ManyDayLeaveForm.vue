@@ -42,7 +42,7 @@
           </div>
           <div>
               <button type="submit"
-                  class=" group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white  hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ">
+                  class=" relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white  hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ">
                   Request Leave
               </button>
           </div>
@@ -68,7 +68,7 @@ export default {
   }),
   methods: {
       submit: async function () {
-              this.$store.dispatch("createLeave", { leaveTo:this.leave.leaveTo,leaveFrom:this.leave.leaveFrom, reason:this.leave.reason, isMedical:this.leave.isMedical, isFullday:true,isOneday:false, reportPersonId:this.userState.user.reportPerson._id,employee:this.userState.user._id });
+              this.$store.dispatch("createLeave", { leaveTo:this.leave.leaveTo,leaveFrom:this.leave.leaveFrom, reason:this.leave.reason, isMedical:this.leave.isMedical, isFullday:true,isOneday:false, reportPerson:this.userState.user.reportPerson._id,employee:this.userState.user._id });
               this.closePopup()
       },
   },
