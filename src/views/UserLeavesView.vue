@@ -109,7 +109,7 @@ export default {
                 this.$store.dispatch("getAllLeavesByEmployee", { page: this.$route.query.page, id: localStorage.getItem('userID') });
                 }
             },
-        ),
+        )
             this.$store.dispatch("getAllLeavesByEmployee", { page: this.$route.query.page, id: localStorage.getItem('userID') });
     },
     data() {
