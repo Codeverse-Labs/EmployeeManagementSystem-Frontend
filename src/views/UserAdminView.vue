@@ -57,7 +57,7 @@
                         class="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm mb-2" />
                 </div>
                 <div class="">
-                    <input id="name" name="name" type="name" v-model="updateUser.salary" autocomplete="salary" required
+                    <input id="salary" name="salary" type="number" v-model="updateUser.salary" min="0" required
                         placeholder="Salary"
                         class="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm mb-2" />
                 </div>
@@ -154,12 +154,13 @@ export default {
                 this.updateUser.designation = this.userState.otherUser.designation._id;
             }
             if (this.userState.otherUser.reportPerson) {
-                this.updateUser.reportPerson = this.userState.otherUser.reportPerson;
+                this.updateUser.reportPerson = this.userState.otherUser.reportPerson._id;
             }
         },
     },
     created() {
         this.$store.dispatch('getAllUsersForAdmin')
+        this.$store.dispatch("getAllDesignations");
     }
 }
 </script>
