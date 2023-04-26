@@ -78,29 +78,42 @@
                     </div>
                     <div class=" text-left">
                         <h1 class=" text-xs font-medium text-gray-400">Duration</h1>
-                        <h1 class="text-base font-medium text-gray-700" v-if="leave.isOneday && leave.isFullday">Full day </h1>
-                        <h1 class="text-base font-medium text-gray-700" v-else-if="leave.isOneday && !leave.isFullday">Half day </h1>
-                        <h1 class="text-base font-medium text-gray-700" v-else>{{ daysDiff(leave.leaveFrom, leave.leaveTo) }} days </h1>
+                        <h1 class="text-base font-medium text-gray-700" v-if="leave.isOneday && leave.isFullday">Full day
+                        </h1>
+                        <h1 class="text-base font-medium text-gray-700" v-else-if="leave.isOneday && !leave.isFullday">Half
+                            day </h1>
+                        <h1 class="text-base font-medium text-gray-700" v-else>{{ daysDiff(leave.leaveFrom, leave.leaveTo)
+                        }} days </h1>
                     </div>
                     <div class=" text-left">
                         <h1 class=" text-xs font-medium text-gray-400">Leave To</h1>
-                        <h1 class="text-base font-medium text-green-700" v-if="leave.status=='Accepted'">{{ leave.status}} </h1>
-                        <h1 class="text-base font-medium text-yellow-700" v-else-if="leave.status=='Pending'">{{ leave.status}} </h1>
-                        <h1 class="text-base font-medium text-red-700" v-else>{{ leave.status}} </h1>
-                        
+                        <h1 class="text-base font-medium text-green-700" v-if="leave.status == 'Accepted'">{{ leave.status }}
+                        </h1>
+                        <h1 class="text-base font-medium text-yellow-700" v-else-if="leave.status == 'Pending'">{{
+                            leave.status }} </h1>
+                        <h1 class="text-base font-medium text-red-700" v-else>{{ leave.status }} </h1>
+
                     </div>
                 </div>
-                    <div class=" text-left py-6">
-                        <h1 class=" text-xs font-medium text-gray-400">Reason</h1>
-                        <p class="text-base font-medium text-gray-700 break-all break-words">{{ leave.reason }} </p>
-                    </div>
-                    <div class="grid grid-cols-1 gap-6 md:grid-cols-2" v-if="leave.status=='Pending' && leave.reportPerson._id==userState.user._id">
-                        <button class="justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white  hover:bg-green-700" @click="updateLeaveStatus({_id:leave._id,status:'Accepted'})">Accept</button>
-                        <button class="justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white  hover:bg-red-700" @click="updateLeaveStatus({_id:leave._id,status:'Rejected'})">Reject</button>
-                    </div>
-                    <div class="grid grid-cols-1 gap-6" v-if="leave.status=='Pending' && leave.employee._id==userState.user._id">
-                        <button class="justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white  hover:bg-red-700" @click="updateLeaveStatus({_id:leave._id,status:'Canceled'})">Cancel</button>
-                    </div>
+                <div class=" text-left py-6">
+                    <h1 class=" text-xs font-medium text-gray-400">Reason</h1>
+                    <p class="text-base font-medium text-gray-700 break-all break-words">{{ leave.reason }} </p>
+                </div>
+                <div class="grid grid-cols-1 gap-6 md:grid-cols-2"
+                    v-if="leave.status == 'Pending' && leave.reportPerson._id == userState.user._id">
+                    <button
+                        class="justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white  hover:bg-green-700"
+                        @click="updateLeaveStatus({ _id: leave._id, status: 'Accepted' })">Accept</button>
+                    <button
+                        class="justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white  hover:bg-red-700"
+                        @click="updateLeaveStatus({ _id: leave._id, status: 'Rejected' })">Reject</button>
+                </div>
+                <div class="grid grid-cols-1 gap-6"
+                    v-if="leave.status == 'Pending' && leave.employee._id == userState.user._id">
+                    <button
+                        class="justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white  hover:bg-red-700"
+                        @click="updateLeaveStatus({ _id: leave._id, status: 'Canceled' })">Cancel</button>
+                </div>
             </div>
         </div>
     </div>
@@ -142,10 +155,14 @@ export default {
             this.popup = true;
             this.leave = leave
         },
-        updateLeaveStatus(data){
-            this.$store.dispatch("updateLeave", { _id:data._id,status:data.status});
+        updateLeaveStatus(data) {
+            this.$store.dispatch("updateLeave", { _id: data._id, status: data.status });
             this.closePopup();
-            window.location.reload()
+            if (data.status == "Canceled") {
+                this.$store.dispatch("getAllLeavesByEmployee", { page: this.$route.query.page, id: localStorage.getItem('userID') });
+            } else {
+                this.$store.dispatch("getAllLeavesByReportPerson", { page: this.$route.query.page, id: localStorage.getItem('userID') });
+            }
         }
     }
 }
