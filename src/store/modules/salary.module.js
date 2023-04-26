@@ -54,7 +54,7 @@ const actions = {
     getAllSalaryByDate: async function ({ commit }, payload) {
         try {
             commit("SET_LOADING", true);
-            let response = await SalaryService.getByDate(payload.id, payload.page);
+            let response = await SalaryService.getByDate(payload);
             if (response.data.status == 200) {
                 console.log(response.data.data.docs)
             } else {
@@ -120,7 +120,6 @@ const actions = {
             commit("SET_LOADING", true);
             await SalaryService.create(data);
             NotificationHelper.notificationhandler('salary created successfully!')
-            store.dispatch('getAllSalary')
             commit("SET_LOADING", false);
         } catch (error) {
             NotificationHelper.errorhandler(error)
