@@ -8,6 +8,10 @@
       <i class="fa fa-add"></i> Add Salary
     </button>
   </div>
+  <div class="flex mx-4">
+    <input @change="salaryByDate()" id="month" name="month" type="month" v-model="month" required
+      class="relative block w-full md:w-1/2 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm mb-2" />
+  </div>
 
   <!-- Salary List -->
   <salary-list-component />
@@ -33,7 +37,7 @@
       </button>
 
       <!-- form -->
-      <form class=" grid py-20" @submit.prevent="update" method="POST">
+      <form class=" grid py-20" @submit.prevent="create" method="POST">
         <h1 class=" text-xl font-bold ">Add Salary</h1>
         <div class="">
           <input id="month" name="month" type="month" v-model="salary.month" required
@@ -75,31 +79,51 @@ export default {
   methods: {
     getPage(page) {
       this.page = page
-      this.$router.push({ name: "salary", query: { page: page } })
+      if (this.$route.params.date) {
+        this.$router.push({ name: "salaryByDate", query: { page: page }, params: { date: this.$route.params.date } })
+      } else {
+        this.$router.push({ name: "salary", query: { page: page } })
+      }
     },
-    update: async function () {
-      let date =this.salary.month.concat("-26");
-      this.$store.dispatch('createSalary',{usDollerValue:this.salary.usDollerValue,salaryDate:date});
-      this.popup=false;
+    create: async function () {
+      let date = this.salary.month.concat("-26");
+      this.$store.dispatch('createSalary', { usDollerValue: this.salary.usDollerValue, salaryDate: date });
+      this.popup = false;
       this.$store.dispatch('getAllSalary', { page: this.$route.query.page });
     },
+    salaryByDate() {
+      let date = this.month.concat("-26");
+      this.$router.push({ name: "salaryByDate", query: { page: 1 }, params: { date: date } })
+    },
+    getsalary() {
+      if (this.$route.params.date) {
+        this.$store.dispatch('getAllSalaryByDate', { page: this.$route.query.page, date: this.$route.params.date })
+      } else {
+        this.$store.dispatch('getAllSalary', { page: this.$route.query.page })
+      }
+    }
   },
   created() {
     this.$watch(
       () => this.$route.query,
       () => {
-        this.$store.dispatch('getAllSalary', { page: this.$route.query.page })
+        this.getsalary();
+      },
+      () => this.$route.params,
+      () => {
+        this.getsalary();
       },
     ),
-      this.$store.dispatch('getAllSalary', { page: this.$route.query.page })
+      this.getsalary();
   },
   data() {
     return {
       popup: false,
       salary: {
         month: '',
-        usDollerValue: ''
-      }
+        usDollerValue: '',
+      },
+      month: ''
     }
   }
 };

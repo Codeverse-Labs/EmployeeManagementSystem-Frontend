@@ -64,6 +64,12 @@ const routes = [
     meta:{auth:true,admin:true}
   },
   {
+    path: '/salary/:date',
+    name: 'salaryByDate',
+    component: () => import('../views/SalaryAdminView.vue'),
+    meta:{auth:true,admin:true}
+  },
+  {
     path: '/technology',
     name: 'technology',
     component: () => import('../views/TechnologyView.vue'),
