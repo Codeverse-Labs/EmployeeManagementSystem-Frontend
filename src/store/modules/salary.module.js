@@ -120,7 +120,6 @@ const actions = {
             commit("SET_LOADING", true);
             await SalaryService.create(data);
             NotificationHelper.notificationhandler('salary created successfully!')
-            store.dispatch('getAllSalary')
             commit("SET_LOADING", false);
         } catch (error) {
             NotificationHelper.errorhandler(error)
