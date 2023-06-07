@@ -135,6 +135,12 @@ const routes = [
     component: () => import('../views/SigninView.vue'),
     meta:{auth:false}
   },
+  {
+    path: '/forgetPassword/:id',
+    name: 'forgetPassword',
+    component: () => import('../views/ForgetPasswordView.vue'),
+    meta:{auth:false}
+  },
 ]
 
 const router = createRouter({
