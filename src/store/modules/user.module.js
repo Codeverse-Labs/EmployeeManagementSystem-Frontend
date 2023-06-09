@@ -222,6 +222,7 @@ const actions = {
             let response = await AuthService.getUserDetails(token);
             commit("SET_LOGGED_USER", { user: response.data.data })
             localStorage.setItem("userID", response.data.data._id);
+            localStorage.setItem("role", response.data.data.role);
             NotificationHelper.notificationhandler("Successfully login in!")
             return router.push("/");
         } catch (error) {
