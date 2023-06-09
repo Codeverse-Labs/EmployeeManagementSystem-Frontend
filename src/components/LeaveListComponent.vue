@@ -86,7 +86,7 @@
                         }} days </h1>
                     </div>
                     <div class=" text-left">
-                        <h1 class=" text-xs font-medium text-gray-400">Leave To</h1>
+                        <h1 class=" text-xs font-medium text-gray-400">Leave Status</h1>
                         <h1 class="text-base font-medium text-green-700" v-if="leave.status == 'Accepted'">{{ leave.status }}
                         </h1>
                         <h1 class="text-base font-medium text-yellow-700" v-else-if="leave.status == 'Pending'">{{
