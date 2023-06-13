@@ -94,8 +94,7 @@ export default {
         this.$watch(
             () => this.$route.query,
             () => {
-                console.log(this.$route.query.userleaves)
-                if(this.$route.query.userleaves){
+                if(this.$route.query.userleaves == 'true'){
                 this.$store.dispatch("getAllLeavesByReportPerson", { page: this.$route.query.page, id: localStorage.getItem('userID') });
                 }else{
                 this.$store.dispatch("getAllLeavesByEmployee", { page: this.$route.query.page, id: localStorage.getItem('userID') });
@@ -103,7 +102,15 @@ export default {
             },
             () => this.$route.userleaves,
             () => {
-                if(this.$route.query.userleaves){
+                if(this.$route.query.userleaves == 'true'){
+                this.$store.dispatch("getAllLeavesByReportPerson", { page: this.$route.query.page, id: localStorage.getItem('userID') });
+                }else{
+                this.$store.dispatch("getAllLeavesByEmployee", { page: this.$route.query.page, id: localStorage.getItem('userID') });
+                }
+            },
+            () => this.popup,
+            () => {
+                if(this.$route.query.userleaves == 'true'){
                 this.$store.dispatch("getAllLeavesByReportPerson", { page: this.$route.query.page, id: localStorage.getItem('userID') });
                 }else{
                 this.$store.dispatch("getAllLeavesByEmployee", { page: this.$route.query.page, id: localStorage.getItem('userID') });
