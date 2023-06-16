@@ -19,20 +19,20 @@
         <div class="-space-y-px rounded-md shadow-sm">
           <div>
             <label for="name" class="sr-only">Name</label>
-            <input id="name" v-model="user.name" name="name" type="name" autocomplete="name" required=""
+            <input id="name" v-model="user.name" name="name" type="name" autocomplete="name" required
               class="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm mb-2"
               placeholder="name" />
           </div>
           <div>
             <label for="email-address" class="sr-only">Email address</label>
-            <input id="email-address" v-model="user.email" name="email" type="email" autocomplete="email" required=""
+            <input id="email-address" v-model="user.email" name="email" type="email" autocomplete="email" required
               class="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm mb-2"
               placeholder="Email address" />
           </div>
           <div>
             <label for="password" class="sr-only">Password</label>
             <input id="password" v-model="user.password" name="password" type="password" autocomplete="current-password"
-              required=""
+              required minlength="8"
               class="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm mb-2"
               placeholder="Password" />
           </div>

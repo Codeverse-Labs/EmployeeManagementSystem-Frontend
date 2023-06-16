@@ -20,7 +20,7 @@ data(){
 },
 methods:{
    search(){
-    this.$router.push(`/search/${this.searchTerm}`);
+    this.$router.push({ name: "userByName",params: { searchTerm:this.searchTerm}, query: { page: 1 } })
     }
 }
 

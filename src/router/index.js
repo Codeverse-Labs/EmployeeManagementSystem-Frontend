@@ -1,12 +1,35 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import store from '../store/index'
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView,
+    meta:{auth:true}
+  },
+  {
+    path: '/user/:id',
+    name: 'user',
+    component: () => import('../views/OtherUserProfileView.vue'),
+    meta:{auth:true}
+  },
+  {
+    path: '/userByTech/:id',
+    name: 'userByTech',
+    component: () => import('../views/UserByTechView.vue'),
+    meta:{auth:true}
+  },
+  {
+    path: '/userByDesignation/:id',
+    name: 'userByDesignation',
+    component: () => import('../views/UserByDesignationView.vue'),
+    meta:{auth:true}
+  },
+  {
+    path: '/userByName/:searchTerm',
+    name: 'userByName',
+    component: () => import('../views/UserByNameView.vue'),
     meta:{auth:true}
   },
   {
@@ -40,6 +63,12 @@ const routes = [
     meta:{auth:true,admin:true}
   },
   {
+    path: '/salary/:date',
+    name: 'salaryByDate',
+    component: () => import('../views/SalaryAdminView.vue'),
+    meta:{auth:true,admin:true}
+  },
+  {
     path: '/technology',
     name: 'technology',
     component: () => import('../views/TechnologyView.vue'),
@@ -56,6 +85,24 @@ const routes = [
     name: 'assets',
     component: () => import('../views/AssetsAdminView'),
     meta:{auth:true,admin:true}
+  },
+  {
+    path: '/assetsByType/:id',
+    name: 'assetsByType',
+    component: () => import('../views/AssetsAdminByTypeView'),
+    meta:{auth:true}
+  },
+  {
+    path: '/addassets',
+    name: 'addassets',
+    component: () => import('../views/AssetManageView.vue'),
+    meta:{auth:true}
+  },
+  {
+    path: '/editassets/:AssetId',
+    name: 'editassets',
+    component: () => import('../views/AssetManageView.vue'),
+    meta:{auth:true}
   },
   {
     path: '/userAssets',
@@ -87,6 +134,12 @@ const routes = [
     component: () => import('../views/SigninView.vue'),
     meta:{auth:false}
   },
+  {
+    path: '/forgetPassword/:id',
+    name: 'forgetPassword',
+    component: () => import('../views/ForgetPasswordView.vue'),
+    meta:{auth:false}
+  },
 ]
 
 const router = createRouter({
@@ -95,11 +148,11 @@ const router = createRouter({
 });
 
 router.beforeEach((to,from,next)=>{
-  if(to.meta.auth && !store.getters.getUserState.token){
+  if(to.meta.auth && !localStorage.getItem('token')){
     next('/signin')
-  }else if(!to.meta.auth && store.getters.getUserState.token){
+  }else if(!to.meta.auth && localStorage.getItem('token')){
     next('/')
-  }else if(to.meta.admin && store.getters.getUserState.user.role !='admin'){
+  }else if(to.meta.admin && localStorage.getItem('role') !='admin'){
     next('/')
   }else{
     next();

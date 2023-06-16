@@ -1,11 +1,9 @@
 import  axios  from "axios";
-import store from "../store/index";
-
+import {serverURL} from "../constants/Constants";
 
 axios.interceptors.request.use(req => {
-        let accessToken = store.getters.getUserState.token;
+        let accessToken = localStorage.getItem('token')
         req.headers.Authorization = `Bearer ${accessToken}`;
-    console.log('INTERCEPTED');
     return req;
 },
 (error) => {
@@ -13,35 +11,34 @@ axios.interceptors.request.use(req => {
 });
 
 export class TechnologyService{
-    static serverURL = 'http://localhost:8000';
 
    
     static getAll(){
-        let dataURL = `${this.serverURL}/technology`;
+        let dataURL = `${serverURL}/technology`;
         return axios.get(dataURL,{headers: {
             'Content-Type': 'application/json'
         }});
     }
     static getById(id){
-        let dataURL = `${this.serverURL}/technology/${id}`;
+        let dataURL = `${serverURL}/technology/${id}`;
         return axios.get(dataURL,{headers: {
             'Content-Type': 'application/json'
         }});
     }
     static create(data){
-        let dataURL = `${this.serverURL}/technology/`;
+        let dataURL = `${serverURL}/technology/`;
         return axios.post(dataURL,data,{headers: {
             'Content-Type': 'application/json'
         }});
     }
     static update(data,id){
-        let dataURL = `${this.serverURL}/technology/${id}`;
+        let dataURL = `${serverURL}/technology/${id}`;
         return axios.put(dataURL,data,{headers: {
             'Content-Type': 'application/json'
         }});
     }
     static delete(id){
-        let dataURL = `${this.serverURL}/technology/${id}`;
+        let dataURL = `${serverURL}/technology/${id}`;
         return axios.delete(dataURL,{headers: {
             'Content-Type': 'application/json'
         }});

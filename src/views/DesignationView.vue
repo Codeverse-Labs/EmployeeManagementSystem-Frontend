@@ -1,4 +1,7 @@
 <template>
+    <h2 class="my-6 mx-7 text-left text-3xl font-bold tracking-tight text-gray-900">
+        Job Titles :
+    </h2>
     <!--form -->
     <div class="mx-4 mt-3 pb-7">
         <form @submit.prevent="submit" method="POST">
@@ -44,7 +47,7 @@
 
     <!-- designation edit sec -->
     <div id="popup-modal" v-if="popup"
-        class="fixed top-0 left-0 right-0 z-50  p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full justify-center"
+        class="flex fixed top-0 left-0 right-0 z-50  p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full justify-center"
         style="background-color:rgba(0, 0, 0, 0.400)">
         <div class="relative bg-white rounded-lg shadow self-center px-20  max-w-md m-auto">
             <button type="button" @click="closePopup()"
@@ -122,6 +125,9 @@ export default {
         closePopup() {
             this.popup = false;
         }
+    },
+    created(){
+        this.$store.dispatch("getAllDesignations");
     }
 }
 </script>

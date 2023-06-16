@@ -11,7 +11,7 @@ const state = () => ({
         isLoading: false,
         user: null,
         otherUser: null,
-        token: "",        
+        token: "",
         totalPages: 0,
     },
 })
@@ -97,7 +97,7 @@ const actions = {
     getAllUsersByName: async function ({ commit }, payload) {
         try {
             commit("SET_LOADING", true);
-            let response = await UserService.getAllUsersByName(payload.id, payload.page);
+            let response = await UserService.getAllUsersByName(payload.searchTerm, payload.page);
             if (response.data.status == 200) {
                 console.log(response.data.data.docs)
             } else {
@@ -132,13 +132,39 @@ const actions = {
             NotificationHelper.errorhandler(error)
         }
     },
-    updateUser: async function ({ commit }, user) {
+    updateUser: async function ({ commit }, data) {
         try {
             commit("SET_LOADING", true);
-            await UserService.updateUser(user, user._id);
-            let response = await UserService.getUser(user._id);
-            commit("SET_LOGGED_USER", { user: response.data.data })
+            await UserService.updateUser(data, data._id);
             NotificationHelper.notificationhandler("User updated successfully!")
+            store.dispatch('getAllUsersForAdmin')
+            commit("SET_LOADING", false);
+        } catch (error) {
+            NotificationHelper.errorhandler(error)
+        }
+    },
+    updateLoggedUser: async function ({ commit }, data) {
+        try {
+            commit("SET_LOADING", true);
+            await UserService.updateUser(data, data._id);
+            let response = await UserService.getUser(data._id);
+            commit("SET_LOGGED_USER", { user: response.data.data })
+            NotificationHelper.notificationhandler("User Details updated successfully!")
+            commit("SET_LOADING", false);
+        } catch (error) {
+            NotificationHelper.errorhandler(error)
+        }
+    },
+    updateLoggedUserPassword: async function ({ commit }, data) {
+        try {
+            commit("SET_LOADING", true);
+            const response = await UserService.updateUserPassword(data, data._id);
+            if (response.data.status == 200) {
+            NotificationHelper.notificationhandler("Password updated successfully!")
+                commit("SET_LOADING", false);
+            } else {
+                NotificationHelper.errorhandler(response.data.msg)
+            }
             commit("SET_LOADING", false);
         } catch (error) {
             NotificationHelper.errorhandler(error)
@@ -158,7 +184,6 @@ const actions = {
         try {
             commit("SET_LOADING", true);
             const response = await AuthService.signup(user);
-            console.log(response)
             if (response.data.status == 200) {
                 NotificationHelper.notificationhandler("User registered successfully!")
                 commit("SET_LOADING", false);
@@ -174,6 +199,7 @@ const actions = {
         try {
             const response = await AuthService.login(user);
             if (response.data.status == 200) {
+                localStorage.setItem("token", response.data.data);
                 commit("SET_TOKEN", { token: response.data.data })
                 store.dispatch('getUser', { token: response.data.data })
             } else {
@@ -184,7 +210,9 @@ const actions = {
             this.errorhandler(error)
         }
     },
-    logout: async function ({ commit }) {        
+    logout: async function ({ commit }) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userID');
         NotificationHelper.notificationhandler("Successfully logged out!")
         commit("SET_LOGGED_USER", { contact: null });
         commit("SET_TOKEN", { token: null });
@@ -193,8 +221,21 @@ const actions = {
         try {
             let response = await AuthService.getUserDetails(token);
             commit("SET_LOGGED_USER", { user: response.data.data })
+            localStorage.setItem("userID", response.data.data._id);
+            localStorage.setItem("role", response.data.data.role);
             NotificationHelper.notificationhandler("Successfully login in!")
             return router.push("/");
+        } catch (error) {
+            NotificationHelper.errorhandler(error)
+        }
+    },
+    setdata: async function ({ commit }) {
+        try {
+            commit("SET_LOADING", true);
+            const userID = localStorage.getItem('userID');
+            let response = await UserService.getUser(userID);
+            commit("SET_LOGGED_USER", { user: response.data.data })
+            commit("SET_LOADING", false);
         } catch (error) {
             NotificationHelper.errorhandler(error)
         }
